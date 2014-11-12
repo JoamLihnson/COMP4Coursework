@@ -1,5 +1,5 @@
 from PyQt4.QtSql import *
-from PyWt4.QCore import *
+from PyQt4.QCore import *
 
 
 
