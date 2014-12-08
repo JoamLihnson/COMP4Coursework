@@ -1,5 +1,14 @@
 import sqlite3
 
+
+def Query (sql, data):
+    with sqlite3.connect("charityShop.db") as db:
+        cursor = db.cursor()
+        cursor.execute("PRAGMA foreign_keys = ON")
+        cursor.execute(sql, data)
+        db.commit()
+
+        
 #Displays the initial menu of options
 def Menu():
     print("Would you like to...")
@@ -8,10 +17,11 @@ def Menu():
     print("2. Update Data")
     print("3. Delete Data")
     print("4. End")
+    print()
     return
 
 #You select which entities you wish to work with.
-def Selection():
+def EntSelect():
     print("Would you like to change...")
     print()
     print("1. Staff")
@@ -20,96 +30,146 @@ def Selection():
     print("4. Item")
     print("5. Donation")
     print("6. Return to previous menu")
+    print()
     selection = int(input(">>"))
+    print()
     if selection == 1:
-        Selected, Questioned, ListedFields = SelectStaff()
-        return(Selected, Questioned, ListedFields)
+        Questioned, ListedFields = SelectStaff()
+        return(Questioned, ListedFields)
     elif selection == 2:
-        Selected, Questioned, ListedFields = SelectDonator()
-        return(Selected, Questioned, ListedFields)
+        Questioned, ListedFields = SelectDonator()
+        return(Questioned, ListedFields)
     elif selection == 3:
-        Selected, Questioned, ListedFields = SelectCategory()
-        return(Selected, Questioned, ListedFields)
+        Questioned, ListedFields = SelectCategory()
+        return(Questioned, ListedFields)
     elif selection == 4:
-        Selected, Questioned, ListedFields = SelectItem()
-        return(Selected, Questioned, ListedFields)
+        Questioned, ListedFields = SelectItem()
+        return(Questioned, ListedFields)
     elif selection == 5:
-        Selected, Questioned, ListedFields = SelectDonation()
-        return(Selected, Questioned, ListedFields)
+        Questioned, ListedFields = SelectDonation()
+        return(Questioned, ListedFields)
     else:
-        return (0,0,0)
-        
-        
-          
+        return (0,0)
 
 
 def Insert():
     with sqlite3.connect("charityShop.db") as db:
-        Selected, Questioned, ListedFields = Selection()
-        if Selected == 0:
+        Questioned, ListedFields = EntSelect()
+        if Questioned == 0:
             return(0)
         cursor = db.cursor()
-        sql = "insert into {} values {}".format(Selected, Questioned)
+        #Since the format of the string is very specfic, it would require it to be hardcoded from every seperate entity and every action
+        #Instead, I have made it so that it manipulates the contents of the ListFields list (which contains the names for every part of every entity)
+        #The string is therefore constucted by using FOR loops and string editing, so this process can be applied to whatever I throw at it
+        completeList = (ListedFields[0] + " (" + ListedFields[1])
+        for count in range(len(ListedFields)-2):
+            completeList = (completeList + ", " + ListedFields[count+2])    
+        completeList = (completeList + ")")
+        sql = "insert into {} values {}".format(completeList, Questioned)
         values = []
-        for count in range(len(ListedFields)):
+        for count in range(len(ListedFields) - 1):
             values.append(0)
-        for count in range(len(ListedFields)):
-            values[count] = input("{} :".format(ListedFields[count]))
+        for count in range(len(ListedFields) - 1):
+            values[count] = input("{} :".format(ListedFields[count +1]))
         values = tuple(values)
-        cursor.execute(sql, values)
-        db.commit()
         completion = 1
         return(1)
 
+def Select(Choice):
+    pass
+
 def Delete():
+    with sqlite3.connect("charityShop.db") as db:
+        cursor = db.cursor()
+        print("Would you like to delete...")
+        print("1. All Data")
+        print("2. Entity Specfic Data")
+        print("3. Return to previous menu")
+        Choice = int(input(">>"))
+        print()
+        if Choice == 1:
+                    print("The code to delete everything does exist, but I'm not letting it run out of danger of it DELETING ALL DATA AJHSJKHAKS")
+                    deleteAll = False
+                    if deleteAll:
+                        sql = ("delete from Staff")
+                        cursor.execute(sql)
+                        sql = ("delete from Donator")
+                        cursor.execute(sql)
+                        sql = ("delete from Category")
+                        cursor.execute(sql)
+                        sql = ("delete from Item")
+                        cursor.execute(sql)
+                        sql = ("delete from Donation")
+                        cursor.execute(sql)
+                        print("its all gone ;_;7")
+                    return
+        elif Choice == 2:
+            Questioned, ListedFields = EntSelect()
+            print("Would you like to delete data by referncing from the field...")
+            for count in range (len(ListedFields) - 1):
+                print("{}. {}".format(count + 1, ListedFields[count + 1]))
+            Choice = int(input(">>"))
+            print()
+            print("What is the data you will use to reference...")
+            refData = input(">>")
+            print()
+            sql = "delete from {} where {}=?".format(ListedFields[0], ListedFields[Choice])
+            Query(sql, refData)
+            print("Deleted!")
+            print()
+        return
+
+def Update():
     return
 
 
 
 
 
-          
+# All these SelectEntity functions have the atributes of each entity hardcoded in so that they can be manipulated in a way that Python understands
 def SelectStaff():
-    Selected = "Staff (StaffID, StaffFirstName, StaffLastName)"
     Questioned = "(?,?,?)"
-    ListedFields = ["StaffID", "StaffFirstName", "StaffLastName"]
-    return(Selected, Questioned, ListedFields)
+    ListedFields = ["Staff", "StaffID", "StaffFirstName", "StaffLastName"]
+    return(Questioned, ListedFields)
 
 def SelectDonator():
-    Selected = "Donator (DonatorID, DonatorFirstName, DonatorLastName, DonatorAddress1, DonatorAddress2, DonatorCity, DonatorCounty, DonatorPostCode, DonatorContact)"
     Questioned = "(?,?,?,?,?,?,?,?,?)"
-    ListedFields = ["DonatorID", "DonatorFirstName", "DonatorLastName", "DonatorAddress1", "DonatorAddress2", "DonatorCity", "DonatorCounty", "DonatorPostCode", "DonatorContact"]
-    return(Selected, Questioned, ListedFields)
+    ListedFields = ["Donator", "DonatorID", "DonatorFirstName", "DonatorLastName", "DonatorAddress1", "DonatorAddress2", "DonatorCity", "DonatorCounty", "DonatorPostCode", "DonatorContact"]
+    return(Questioned, ListedFields)
 
 def SelectCategory():
-    Selected = "Category (ItemCategory, ItemCategoryDescription)"
     Questioned = "(?,?)"
-    ListedFields = ["ItemCategory", "ItemCategoryDescription"]
-    return(Selected, Questioned, ListedFields)
+    ListedFields = ["Category", "ItemCategory", "ItemCategoryDescription"]
+    return(Questioned, ListedFields)
 
 def SelectItem():
-    Selected = "Item (ItemCode, ItemDescription, ItemPrice, ItemCategory, ItemQualityCheck, ItemStatus)"
     Questioned = "(?,?,?,?,?,?)"
-    ListedFields = ["ItemCode", "ItemDescription", "ItemPrice", "ItemCategory", "ItemQualityCheck", "ItemStatus"]
-    return(Selected, Questioned, ListedFields)
+    ListedFields = ["Item", "ItemCode", "ItemDescription", "ItemPrice", "ItemCategory", "ItemQualityCheck", "ItemStatus"]
+    return(Questioned, ListedFields)
 
 def SelectDonation():
-    Selected = "Donation (DonationCode,ItemCode, DonatorID, StaffID, Date)"
     Questioned = "(?,?,?,?,?)"
-    ListedFields = ["DonationCode", "ItemCode", "DonatorID", "StaffID", "Date"]
-    return(Selected, Questioned, ListedFields)
+    ListedFields = ["Donation", "DonationCode", "ItemCode", "DonatorID", "StaffID", "Date"]
+    return(Questioned, ListedFields)
 
 
 
 
-if __name__ == "__main__":   
-    Menu()
-    menuSelect = int(input(">>"))
-    if menuSelect == 1:
-        completion = Insert()
-        if completion == 1:
-            print("Values added!")
-        else:
-            print("Addition aborted")
-    elif menuSelect == 2:
-        Delete()
+if __name__ == "__main__":
+    repeatMenu = True
+    while repeatMenu:
+        Menu()
+        menuSelect = int(input(">>"))
+        print()
+        if menuSelect == 1:
+            completion = Insert()
+            if completion == 1:
+                print("Values added!")
+            else:
+                print("Addition aborted")
+        elif menuSelect == 2:
+            Update()
+        elif menuSelect == 3:
+            Delete()
+        elif menuSelect == 4:
+            repeatMenu = False
