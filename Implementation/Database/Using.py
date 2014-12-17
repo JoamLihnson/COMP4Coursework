@@ -128,7 +128,7 @@ def Delete():
             print()
             sql = "delete from {} where {}=?".format(ListedFields[0], ListedFields[Choice])
             print(sql)
-            Query(sql, refData, True, "Delete")
+            Query(sql, refData, False, "Delete")
             print("Deleted!")
             print()
         return
