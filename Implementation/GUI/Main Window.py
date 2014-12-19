@@ -1,5 +1,6 @@
 from PyQt4.QtGui import *
 from PyQt4.QtCore import *
+from RadioButton import *
 import sys
 import sqlite3
 
@@ -43,6 +44,7 @@ class Window (QMainWindow):
 
         self.addToolBar(self.toolBar)
         self.setMenuBar(self.menuBar)
+        self.RadioButtons()
 
         self.LoadDatabase.triggered.connect(self.LoadDatabaseConnect)
         self.Recreate.triggered.connect(self.RecreateConnect)
@@ -51,6 +53,15 @@ class Window (QMainWindow):
         self.Update.triggered.connect(self.UpdateConnect)
         self.Delete.triggered.connect(self.DeleteConnect)
 
+    def RadioButtons(self):
+        self.radioButtonss = RadioButtonWidget("Choose somethin", "Yeah, do that", ("Insert","Update","Delete"))
+        self.instantiateButton = QPushButton("Hella")
+        self.initialLayout = QVBoxLayout()
+        self.initialLayout.addWidget(self.radioButtonss)
+        self.initialLayout.addWidget(self.instantiateButton)
+        self.selectOption = QWidget()
+        self.selectOption.setLayout(self.initialLayout)
+        self.setCentralWidget(self.selectOption)
     def LoadDatabaseConnect(self):
         print("Database Loading...")
 
