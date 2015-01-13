@@ -55,6 +55,14 @@ class Window (QMainWindow):
         self.Update.triggered.connect(self.FileDialogConnect)
         self.Delete.triggered.connect(self.DeleteConnect)
 
+        self.WidgetCenteral()
+
+        self.
+
+    def WidgetCenteral(self):
+        self.gridLayout = QGridLayout()
+        self.gridLayout.addWidget(self.RadioButtons())
+
     def FileDialogConnect(self):
         self.fileDialog = QFileDialog()
         fileName = self.fileDialog.getOpenFileName(self, 'Select a file yo',
@@ -64,6 +72,9 @@ class Window (QMainWindow):
         with file:
             data = file.read()
             self.textEdit.setText(data)
+
+    def GeneralDialog(self,title):
+        
 
     def RadioButtons(self):
         self.radioButtonss = RadioButtonWidget("Choose somethin", "Yeah, do that", ("Insert","Update","Delete"))
@@ -79,7 +90,7 @@ class Window (QMainWindow):
 
     def OptionsDialog(self):
         self.OptionsWindow = QDialog()
-        anotherDialog = self.OptionsWindow.
+        anotherDialog = 0
 
     def RecreateConnect(self):
         print("Recreating database...")
