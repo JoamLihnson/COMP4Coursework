@@ -26,6 +26,7 @@ class Window (QMainWindow):
         self.Insert = QAction("Insert", self)
         self.Update = QAction("Update", self)
         self.Delete = QAction("Delete", self)
+        self.Options = QAction("Options", self)
 
         self.menuBar = QMenuBar()
         self.fileMenu = self.menuBar.addMenu("File")
@@ -36,6 +37,8 @@ class Window (QMainWindow):
         self.databaseMenu.addAction(self.Insert)
         self.databaseMenu.addAction(self.Update)
         self.databaseMenu.addAction(self.Delete)
+        self.settingsMenu = self.menuBar.addMenu("Settings")
+        self.settingsMenu.addAction(self.Options)
 
         self.toolBar = QToolBar("ToolBar")
         self.toolBar.addAction(self.Insert)
@@ -44,7 +47,6 @@ class Window (QMainWindow):
 
         self.addToolBar(self.toolBar)
         self.setMenuBar(self.menuBar)
-        self.RadioButtons()
 
         self.LoadDatabase.triggered.connect(self.LoadDatabaseConnect)
         self.Recreate.triggered.connect(self.RecreateConnect)
@@ -74,6 +76,10 @@ class Window (QMainWindow):
         self.setCentralWidget(self.selectOption)
     def LoadDatabaseConnect(self):
         print("Database Loading...")
+
+    def OptionsDialog(self):
+        self.OptionsWindow = QDialog()
+        anotherDialog = self.OptionsWindow.
 
     def RecreateConnect(self):
         print("Recreating database...")
