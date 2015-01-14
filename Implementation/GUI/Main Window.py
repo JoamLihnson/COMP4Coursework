@@ -4,13 +4,6 @@ from RadioButton import *
 import sys
 import sqlite3
 
-class Database:
-    """The database and it's abilities"""
-    def __init__(self):
-        super().__init__()
-
-        self.Insert = "lel"
-
 class Window (QMainWindow):
     """Charity Shop Program"""
     def __init__(self):
@@ -47,6 +40,23 @@ class Window (QMainWindow):
 
         self.addToolBar(self.toolBar)
         self.setMenuBar(self.menuBar)
+        self.uselessButton = QPushButton("Stupid shite")
+        self.addWidget(self.uselessButton)
+
+        self.grid = QGridLayout()
+        self.setLayout(self.grid)
+        self.names = ['Top Left','Top Right',
+                      'Bottom Left','Bottom Right']
+        self.positions = [(i,j) for i in range(2) for j in range(2)]
+
+        for position, name in zip(self.positions, self.names):
+            
+            if name == '':
+                continue
+            button = QPushButton(name)
+            self.grid.addWidget(button, *position)
+
+
 
         self.LoadDatabase.triggered.connect(self.LoadDatabaseConnect)
         self.Recreate.triggered.connect(self.RecreateConnect)
@@ -54,10 +64,6 @@ class Window (QMainWindow):
         self.Insert.triggered.connect(self.InsertConnect)
         self.Update.triggered.connect(self.FileDialogConnect)
         self.Delete.triggered.connect(self.DeleteConnect)
-
-        self.WidgetCenteral()
-
-        self.
 
     def WidgetCenteral(self):
         self.gridLayout = QGridLayout()
@@ -71,10 +77,7 @@ class Window (QMainWindow):
 
         with file:
             data = file.read()
-            self.textEdit.setText(data)
-
-    def GeneralDialog(self,title):
-        
+            self.textEdit.setText(data)        
 
     def RadioButtons(self):
         self.radioButtonss = RadioButtonWidget("Choose somethin", "Yeah, do that", ("Insert","Update","Delete"))
