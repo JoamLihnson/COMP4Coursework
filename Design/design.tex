@@ -9,6 +9,9 @@
 \section{User Interface Designs}
 
 \section{Hardware Specficiation}
+A computer was donated to the shop last June. This computer is a Dell desktop computer, with 1080p monitor and accessories, running Windows 7 Home Edition. 8GBs of DDR3 RAM, an i5 Intel processor, and a AMD video card. Judy has said that she is perfectly happy to us this computer as a work PC, along with being able to work on it all day. Looking at a technical standpoint of the components, it is more than enough to satisfy whatever my program needs, as my program will take up very little processing power, and require very little storage space, for both the program data itself and the database.
+
+The program will run on a reasonably modern Dell desktop computer, with 1080p monitor and accessories, running Windows 7 Home Edition. 8GBs of DDR3 RAM, an i5 Intel processor, and a AMD video card.This system uses a traditional mouse and keyboard as a input system. Choices will be made by using the mouse to click buttons, and data is inputted by typing on the keyboard. The screen resolution provides plenty of space for a large GUI, if such a size is required. The program will be stored on the computer's hard drive (500Gbs), which will provide plenty
 
 \section{Program Structure}
 
@@ -39,10 +42,37 @@
 \subsection{Normalisation}
 
 \subsubsection{ER Diagrams}
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Design/Images/ERDiagram.png}
+\end{figure}
 
 \subsubsection{Entity Descriptions}
+Staff(\underline{StaffID},StaffFirstName,StaffLastName)
+Category(\underline{ItemCategory},ItemCategoryDescription)
+Item(\underline{ItemCode},ItemDescription,ItemPrice,\textit{ItemCategory},ItemQualityCheck,ItemStatus)
+Donator(\underline{DonatorID},DonatorFirstName,DonatorLastName,DonatorAddress1,DonatorAddress2,DonatorCity,DonatorCounty,DonatorPostCode,DonatorContact)
+Donation(\underline{DonationCode},\textit{ItemCode},\textit{DonatorID},\textit{StaffID},Date)
 
 \subsubsection{1NF to 3NF}
+\begin{center}
+    \begin{tabular}{|p{4cm}|p{4cm}|}
+	\hline
+	\multicolumn{2}{|c|}{UNF} \\
+	\hline
+	\textbf{DonationCode} & \textbf{DonatorLastName} \\ \hline
+	\textbf{Date} & \textbf{DonatorAddress1} \\ \hline
+	\textbf{ItemDescription} & \textbf{DonatorAddress2} \\ \hline
+	\textbf{ItemPrice} & \textbf{DonatorCity} \\ \hline
+	\textbf{ItemCategory} & \textbf{DonatorCounty} \\ \hline
+	\textbf{ItemCategoryDescription} & \textbf{DonatorPostCode} \\ \hline
+	\textbf{ItemQualityCheck} & \textbf{DonatorDontact} \\ \hline
+	\textbf{ItemCode} & \textbf{StaffFirstName} \\ \hline
+	\textbf{ItemStatus} & \textbf{StaffLastName} \\ \hline
+	\textbf{DonatorID} & \textbf{StaffID} \\ \hline
+	\textbf{DonatorFirstName} \\ \hline
+    \end{tabular}
+\end{center}
+	
 
 \subsection{SQL}
 
