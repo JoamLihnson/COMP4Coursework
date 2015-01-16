@@ -40,25 +40,7 @@ class Window (QMainWindow):
 
         self.addToolBar(self.toolBar)
         self.setMenuBar(self.menuBar)
-        self.uselessButton = QPushButton("Stupid shite")
-        self.addWidget(self.uselessButton)
 
-        self.grid = QGridLayout()
-        self.setLayout(self.grid)
-        self.names = ['Top Left','Top Right',
-                      'Bottom Left','Bottom Right']
-        self.positions = [(i,j) for i in range(2) for j in range(2)]
-
-        for position, name in zip(self.positions, self.names):
-            
-            if name == '':
-                continue
-            button = QPushButton(name)
-            self.grid.addWidget(button, *position)
-
-
-
-        self.LoadDatabase.triggered.connect(self.LoadDatabaseConnect)
         self.Recreate.triggered.connect(self.RecreateConnect)
         self.EndProgram.triggered.connect(self.EndProgramConnect)
         self.Insert.triggered.connect(self.InsertConnect)
@@ -305,7 +287,6 @@ class Window (QMainWindow):
 
 if __name__ == "__main__":
     Application = QApplication(sys.argv)
-    Database = Database()
     Window = Window()
     Window.show()
     Window.raise_()
