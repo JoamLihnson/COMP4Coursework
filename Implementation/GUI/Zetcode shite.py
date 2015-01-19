@@ -1,19 +1,3 @@
-#!/usr/bin/python
-# -*- coding: utf-8 -*-
-
-import sys
-from PyQt4 import QtGui
-
-"""
-ZetCode PyQt4 tutorial 
-
-In this example, we create a skeleton
-of a calculator using a QtGui.QGridLayout.
-
-author: Jan Bodnar
-website: zetcode.com 
-last edited: July 2014
-"""
 
 class Example(QtGui.QWidget):
     

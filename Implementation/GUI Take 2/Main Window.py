@@ -13,14 +13,14 @@ class Window (QMainWindow):
         self.grid = QGridLayout()
         self.setLayout(self.grid)
         self.button1 = QPushButton("Button 1", self)
-        self.button2 = QPushButton("Button You", self)
-        self.grid.addWidget(self.button1, 0,0,0,0)
-        self.grid.addWidget(self.button2, 1,1,1,1)
+        self.grid.addWidget(self.button1, 2,0,0,0)
 
         self.menuBar = QMenuBar()
         self.fileMenu = self.menuBar.addMenu("File")
 
-
+        def UselessCodeBlock():
+            self.noice = QVBoxLayout()
+            self.layout = (self.noice)
 
 
 
