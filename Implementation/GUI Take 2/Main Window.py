@@ -9,29 +9,13 @@ class Window (QMainWindow):
         super().__init__()
         
         self.setWindowTitle("Charity Shop Database Management")
-
-        self.grid = QGridLayout()
-        self.setLayout(self.grid)
-        self.button1 = QPushButton("Button 1", self)
-        self.grid.addWidget(self.button1, 2,0,0,0)
-
-        self.menuBar = QMenuBar()
-        self.fileMenu = self.menuBar.addMenu("File")
-
-        def UselessCodeBlock():
-            self.noice = QVBoxLayout()
-            self.layout = (self.noice)
-
-
-
-
-
-
-
-
-
-
-
+        okButton = QPushButton("Cancel")
+        cancelButton = QPushButton("OK")
+        self.hbox = QVBoxLayout()
+        self.hbox.addStretch(1)
+        self.hbox.addWidget(okButton)
+        self.hbox.addWidget(cancelButton)
+        self.setLayout(self.hbox)
 
 
 if __name__ == "__main__":
