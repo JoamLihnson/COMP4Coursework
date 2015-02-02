@@ -1,9 +1,15 @@
+#A lot of this code is actually not very ideal, so things like automatically knowing the date aren't there, or error handling
+#If you were to submit this code for examination, MAKE A DICKLOAD OF CHANGES
+
+
 import sqlite3
 
 #For whatever reason, Adam did it this way, so I am too :v
 #The multiBinds variable is there to prevent binding errors, as if you refernce an unequal amount of fields
 #there is an error, and different functions require different amounts. Insert needs many, delete needs 1
 #So, this method allows both versions of code to run as long as I tell it if its working with more than 1 field
+
+
 def Query (sql, data, multiBinds, method):
     with sqlite3.connect("charityShop.db") as db:
         cursor = db.cursor()

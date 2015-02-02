@@ -90,13 +90,13 @@ class Window (QMainWindow):
         self.insertButton.clicked.connect(self.InsertDialog)
         self.updateButton.clicked.connect(self.UpdateDialog)
         self.deleteButton.clicked.connect(self.DeleteDialog)
-        self.insertButton.clicked.connect(self.InsertDialog)
 
     def InsertDialog(self):
+        statusNote = QLabel("Choose data to insert")
+        self.statusBar.addWidget(statusNote)
         self.dialog = InsertDialogClass()
         self.dialog.exec_()
-        while True:
-            self.statusBar.addWidget(QLabel("Insert Some Data, yo"))
+        self.statusBar.removeWidget(statusNote)
 
     def UpdateDialog(self):
         pass
