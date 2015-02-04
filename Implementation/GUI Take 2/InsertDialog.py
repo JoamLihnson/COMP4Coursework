@@ -1,3 +1,9 @@
+#Thoughts about code#
+#A lot of it is copy pasted and could have fancy functions that make it more efficient,
+#but it's not worth the trouble, as, at the end of the day, the data inputted will require different
+#handling methods, no matter what, and doing fancy input-dependant functions would just take too long and could
+#easily lead to errors that take too much trouble to correct
+
 from PyQt4.QtGui import *
 from PyQt4.QtCore import *
 import sys
@@ -8,6 +14,7 @@ class InsertDialogClass(QDialog):
     def __init__(self):
         super().__init__()
         self.setWindowTitle("Insert Entry")
+        
 
         self.EntrySelect()
 
@@ -160,7 +167,8 @@ class InsertDialogClass(QDialog):
             #make ItemCategory the next number in the db list
             #make a list with number first, category second
             #tuple and ditch it baby
-            pass
+            
+            
         elif self.entryAmount == 8:
             #generate the ID
             #list it all

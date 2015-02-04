@@ -33,6 +33,7 @@ def Menu():
     print("2. Update Data")
     print("3. Delete Data")
     print("4. End")
+    print("Test SQL tings")
     print()
     return
 
@@ -162,7 +163,8 @@ def Update():
             print("{}. End updating".format(len(ListedFields)))
             print()
             Choice = int(input(">>"))
-            if Choice > 0 and Choice < (len(ListedFields)-1):
+            print(len(ListedFields))
+            if Choice > 0 and Choice <= (len(ListedFields)-1):
                 print("Enter a new value for the {} field".format(ListedFields[Choice]))
                 newData = input(">>")
                 print()
@@ -173,6 +175,12 @@ def Update():
                 stopRepeat = True                     
     return
 
+
+def Test():
+    with sqlite3.connect("charityShop.db") as db:
+        cursor = db.cursor()
+    sql = "select * from Category"
+    pass
 
 
 
@@ -226,3 +234,5 @@ if __name__ == "__main__":
             Delete()
         elif menuSelect == 4:
             repeatMenu = False
+        elif menuSelect == 5:
+            Test()
