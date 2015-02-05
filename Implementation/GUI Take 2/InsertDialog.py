@@ -127,6 +127,18 @@ class InsertDialogClass(QDialog):
         self.OKButton.clicked.connect(self.InsertDataFinal)
 
 
+
+
+
+    def DonationInput(self):
+        self.setWindowTitle("Donation Insert")
+
+        pass
+
+    def ItemInput(self):
+        self.setWindowTitle("Item Insert")
+
+
 #since I decided to be wacky and random in that ALL the code for inputting data will be in the dialog, shits tough
 #this is very painful as im going to just return the values to the main program to have them be inputted in the database,
 #despite the fact Im making database connections in this code. I might as well ship them to the db from here
@@ -153,20 +165,12 @@ class InsertDialogClass(QDialog):
 
 
 
-
-    def DonationInput(self):
-        self.setWindowTitle("Donation Insert")
-
-        pass
-
-    def ItemInput(self):
-        self.setWindowTitle("Item Insert")
-
     def InsertDataFinal(self):
         if self.entryAmount == 1:
             #make ItemCategory the next number in the db list
             #make a list with number first, category second
             #tuple and ditch it baby
+            pass
             
             
         elif self.entryAmount == 8:
