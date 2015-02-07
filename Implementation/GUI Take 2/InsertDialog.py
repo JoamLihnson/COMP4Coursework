@@ -9,6 +9,10 @@ from PyQt4.QtCore import *
 import sys
 import sqlite3
 
+import time
+## dd/mm/yyyy format
+print (time.strftime("%d/%m/%Y"))
+
 class InsertDialogClass(QDialog):
     """A dialog for inserting data into the database"""
     def __init__(self):

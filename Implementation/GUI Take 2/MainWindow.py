@@ -16,6 +16,8 @@ class Window (QMainWindow):
         super().__init__()
         self.setWindowTitle("Charity Shop Database Management")
 
+        self.setFixedSize(1000,750)
+
         self.MakeUI()
 
     def MakeUI(self):
@@ -29,7 +31,7 @@ class Window (QMainWindow):
         
 
         #creates the menu bar...
-        self.menuBar = QMenuBar()
+        self.menuBar = QMenuBar()   
         self.fileMenu = self.menuBar.addMenu("File")
         self.databaseMenu = self.menuBar.addMenu("Database")
         self.databaseMenu.addAction(self.Insert)
