@@ -17,6 +17,7 @@ class RadioButtonWidget(QWidget):
 
         counter = 1
         for each in self.radioButtonList:
+            print(each)
             self.radioButtonLayout.addWidget(each)
             self.radioButtonGroup.addButton(each)
             self.radioButtonGroup.setId(each, counter)

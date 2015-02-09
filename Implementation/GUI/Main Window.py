@@ -45,7 +45,7 @@ class Window (QMainWindow):
         self.EndProgram.triggered.connect(self.EndProgramConnect)
         self.Insert.triggered.connect(self.InsertConnect)
         self.Update.triggered.connect(self.FileDialogConnect)
-        self.Delete.triggered.connect(self.DeleteConnect)
+        self.Delete.triggered.connect(self.RadioButtons)
 
     def WidgetCenteral(self):
         self.gridLayout = QGridLayout()
