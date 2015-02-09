@@ -74,6 +74,7 @@ class Window (QMainWindow):
 #11.    Combines the two top VBoxes into one HBox
         self.topHBox = QHBoxLayout()
         self.topHBox.addLayout(self.leftVBox)
+        self.topHBox.addWidget(self.vertDivide)
         self.topHBox.addLayout(self.rightVBox)
 #12.    Creates a final VBox to place everything else in and set as the central widget
         self.bigVBox = QVBoxLayout()
@@ -84,6 +85,17 @@ class Window (QMainWindow):
         self.centralWidget = QWidget()
         self.centralWidget.setLayout(self.bigVBox)
         self.setCentralWidget(self.centralWidget)
+
+#13.    Sets the function connections that get accessed by the button and menu options
+
+        self.donationButton.clicked.connect(self.DonationDialog)
+
+    def DonationDialog(self):
+        statusNote = QLabel("Donation Button Clicked!")
+        self.statusBar.addWidget(statusNote)
+        self.dialog = DonationDialogClass()
+        self.dialog.exec_()
+        self.statusBar.removeWidget
 
 
 
