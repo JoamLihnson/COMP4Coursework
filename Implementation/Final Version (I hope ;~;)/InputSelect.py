@@ -40,23 +40,36 @@ class CategoryInput(QWidget):
         self.setLayout(categoryBox)
         
 
-#class ItemInput(QWidget):
- #   """Layout for when inputting Item data"""
-  #  def __init__(self):
-  ##      super().__init__()
-#
-   #     self.descriptLabel = QLabel("Item Description")
-    #    self.priceLabel = QLabel("Price (£)")
-     #   self.categoryLabel = QLabel("Category")
-      #  self.qualityLabel = QLabel("Quality Check")
-       # self.statusLabel = QLabel("Current Status")
- #       self.descriptEdit = QLineEdit()
-  #      self.priceEdit = QLineEdit()
-   #     self.categorySpin = QSpinBox()
-    #    self.qualityCheck = #This will be a check box
-     #   self.statusSpin = QSpinBox()
+class ItemInput(QWidget):
+    """Layout for when inputting Item data"""
+    def __init__(self):
+        super().__init__()
 
-        #FINISH THIS WHEN YOU HAVE INTERNET
+        self.descriptLabel = QLabel("Item Description")
+        self.priceLabel = QLabel("Price (£)")
+        self.categoryLabel = QLabel("Category")
+        self.qualityLabel = QLabel("Quality Check")
+        self.statusLabel = QLabel("Current Status")
+        self.descriptEdit = QLineEdit()
+        self.priceEdit = QLineEdit()
+        self.categoryCombo = QComboBox()
+        self.qualityCheck = QCheckBox()
+        self.statusCombo = QComboBox()
+
+        self.statusCombo.addItem("Stored")
+        self.statusCombo.addItem("Shop Front")
+        self.statusCombo.addItem("Sold")
+
+        with sqlite3.connect("charityShop.db") as db:
+            sql = "select * from Category"
+            cursor = db.cursor()
+            cursor.execute(sql)
+            selected = cursor.fetchall()
+            db.commit()
+            for count in range(len(selected)):
+                primKey, textCate = selected[count]
+                self.categoryCombo.addItem(textCate)
+
 
 class DonatorInput(QWidget):
     """Layout for when inputting Donator data"""
