@@ -10,11 +10,17 @@ class RadioButtonWidget(QWidget):
         self.radioButtons = [QRadioButton("New Donator"),QRadioButton("Existing Donator")]
         self.radioLayout = QVBoxLayout()
         count = 1
-        for button in radioButtons:
+        for button in self.radioButtons:
             self.radioLayout.addWidget(button)
             self.radioGroup.addButton(button)
             self.radioGroup.setId(button, count)
             count += 1
-        self
+        self.radioBox.setLayout(self.radioLayout)
+        self.selectLayout = QHBoxLayout()
+        self.selectLayout.addWidget(self.radioBox)
+        self.setLayout(self.selectLayout)
+
+    def SelectedOption(self):
+        return self.radioGroup.checkId()
 
         

@@ -23,7 +23,7 @@ class RadioButtonWidget(QWidget):
             self.radioButtonGroup.setId(each, counter)
             counter += 1
         self.radioGroupBox.setLayout(self.radioButtonLayout)
-        self.mainLayout = QVBoxLayout()
+        self.mainLayout = QBoxLayout()
         self.mainLayout.addWidget(self.titleLabel)
         self.mainLayout.addWidget(self.radioGroupBox)
 

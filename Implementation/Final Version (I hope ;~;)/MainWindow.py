@@ -3,6 +3,7 @@ from PyQt4.QtGui import *
 from PyQt4.QtCore import *
 import sys
 import sqlite3
+from DonationDialog import *
 
 #2.     Initilization of the mindow class
 class Window (QMainWindow):
