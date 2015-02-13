@@ -70,6 +70,23 @@ class ItemInput(QWidget):
                 primKey, textCate = selected[count]
                 self.categoryCombo.addItem(textCate)
 
+        self.leftVBox = QVBoxLayout()
+        self.rightVBox = QVBoxLayout()
+        self.leftVBox.addWidget(self.descriptLabel)
+        self.leftVBox.addWidget(self.priceLabel)
+        self.leftVBox.addWidget(self.categoryLabel)
+        self.leftVBox.addWidget(self.qualityLabel)
+        self.leftVBox.addWidget(self.statusLabel)
+        self.rightVBox.addWidget(self.descriptEdit)
+        self.rightVBox.addWidget(self.priceEdit)
+        self.rightVBox.addWidget(self.categoryCombo)
+        self.rightVBox.addWidget(self.qualityCheck)
+        self.rightVBox.addWidget(self.statusCombo)
+        self.itemBox = QHBoxLayout()
+        self.itemBox.addLayout(self.leftVBox)
+        self.itemBox.addLayout(self.rightVBox)
+        self.setLayout(self.itemBox)
+
 
 class DonatorInput(QWidget):
     """Layout for when inputting Donator data"""

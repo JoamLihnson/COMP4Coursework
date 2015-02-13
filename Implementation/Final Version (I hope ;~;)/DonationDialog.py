@@ -10,7 +10,8 @@ class DonationDialogClass(QDialog):
     def __init__(self):
         super().__init__()
         self.setWindowTitle("Enter Donation Information")
-
+        self.setFixedSize(700,500)
+        
         self.ConstructLayouts()
 
 
@@ -39,15 +40,19 @@ class DonationDialogClass(QDialog):
         self.RadioButtons = QWidget()
         self.RadioButtons.setLayout(self.selectLayout)
 
+        self.addItem = QPushButton("Add Item")
 
-        
         self.tableView = QTableWidget()
-        self.tableView.setColumnCount(3)
+        self.tableView.setColumnCount(2)
         self.tableView.setRowCount(4)
+        self.header = QTableWidgetItem("")
+        self.tableView.setHorizontalHeaderItem(1,self.header)
 
         
         self.leftVBox.addWidget(self.RadioButtons)
+        self.leftVBox.addWidget(self.addItem)
         self.leftVBox.addWidget(self.tableView)
+        self.leftVBox.setSpacing(20)
         
         self.donatorLayout = DonatorInput()
         self.existingDonator = QVBoxLayout()
