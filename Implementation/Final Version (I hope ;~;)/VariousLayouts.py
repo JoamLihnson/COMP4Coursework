@@ -1,6 +1,6 @@
 from PyQt4.QtGui import *
 
-class ButtonBox(QWidget):
+class ButtonBoxWidget(QWidget):
     """A widget that has a basic OK and Cancel button combo"""
     def __init__(self):
         super().__init__()
@@ -10,3 +10,4 @@ class ButtonBox(QWidget):
         self.buttonBoxLayout.addWidget(self.OKButton)
         self.buttonBoxLayout.addWidget(self.CancelButton)
         self.setLayout(self.buttonBoxLayout)
+

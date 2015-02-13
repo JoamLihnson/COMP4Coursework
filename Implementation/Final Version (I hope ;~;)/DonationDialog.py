@@ -5,7 +5,7 @@ import sqlite3
 import time
 from InputSelect import DonatorInput
 from InputSelect import ItemInput
-from VariousLayouts import ButtonBox
+from VariousLayouts import ButtonBoxWidget
 
 class DonationDialogClass(QDialog):
     """A dialog when an item is donated"""
@@ -49,7 +49,7 @@ class DonationDialogClass(QDialog):
         self.tableView.setRowCount(4)
         self.header = QTableWidgetItem("")
         self.tableView.setHorizontalHeaderItem(1,self.header)
-        self.buttonBox = ButtonBox()        
+        self.buttonBox = ButtonBoxWidget()        
         self.leftVBox.addWidget(self.RadioButtons)
         self.leftVBox.addWidget(self.addItem)
         self.leftVBox.addWidget(self.tableView)
@@ -96,16 +96,26 @@ class DonationDialogClass(QDialog):
 
 
     def AddItem(self):
-        self.addItemDialog = QDialog()
-        self.addItemDialog.setWindowTitle("Add Item")
-        self.addItemWidget = ItemInput()
-        self.addItemLayout = QVBoxLayout()
-        
-        self.addItemLayout.addWidget(self.addItemWidget)
-        self.addItemLayout.addWidget(self.buttonBox)
-        
-        self.addItemDialog.setLayout(self.addItemLayout)
+        self.addItemDialog = AddItemClass()
         self.addItemDialog.exec_()
+
+class AddItemClass(QDialog):
+        def __init__(self):
+            super().__init__()
+            self.setWindowTitle("Add Item")
+            self.addItemWidget = ItemInput()
+            self.addItemLayout = QVBoxLayout()
+            self.buttonBox = ButtonBoxWidget()   
+        
+            self.addItemLayout.addWidget(self.addItemWidget)
+            self.addItemLayout.addWidget(self.buttonBox)
+        
+            self.setLayout(self.addItemLayout)
+
+            self.buttonBox.CancelButton.clicked.connect(self.close)
+            self.buttonBox.OKButton.clicked.connect(self.Validate)
+
+        def Validate(self)
         
         
         

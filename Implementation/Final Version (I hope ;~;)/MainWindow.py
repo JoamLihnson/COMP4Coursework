@@ -12,7 +12,7 @@ class Window (QMainWindow):
         super().__init__()
         self.setWindowTitle("Charity Shop Database Management")
 
-        self.setFixedSize(565,755)
+        self.setFixedSize(565,600)
 
         self.MakeUI()
 
@@ -53,7 +53,9 @@ class Window (QMainWindow):
 #6.     Creates the contents of the top-right "Bussiness" box
         self.bussinessLabel = QLabel("Bussiness")
         self.saleButton = QPushButton("Sale")
+        self.saleButton.setFixedHeight(55)
         self.donationButton = QPushButton("Donation")
+        self.donationButton.setFixedHeight(55)
         self.rightVBox = QVBoxLayout()
         self.rightVBox.addWidget(self.bussinessLabel)
         self.rightVBox.addWidget(self.saleButton)
@@ -68,7 +70,7 @@ class Window (QMainWindow):
         self.middleHBox.addWidget(self.searchBar)
         self.middleHBox.addWidget(self.searchButton)
 #9.     This is all code for the tables. I don't know shit about tables ¯\_(ツ)_/¯
-        self.tableWidget = QWidget()
+        self.tableWidget = QTableWidget()
 #10.    Creates the status bar the appears at the very bottom of the window
         self.statusBar = QStatusBar()
         self.statusBar.setSizeGripEnabled(0)
